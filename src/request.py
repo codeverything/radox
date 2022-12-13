@@ -1,3 +1,4 @@
+from . import Request
 import cgi
 
 class POST:
@@ -11,10 +12,6 @@ class POST:
         if type(value) == str:
             value = cgi.escape(value)
         return value
-    
-    def __iter__(self):
-        for key, value in self.data:
-            yield key, value
             
 # Credits: Joetib (https://github.com/jeotib/joeweb)
 class Request:
