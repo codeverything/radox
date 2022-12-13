@@ -32,11 +32,10 @@ class Render(HttpResponse):
             with open(filename, 'r') as f:
                 text = f.read()
         except FileNotFoundError:
-            print(f'Error openning file {filename}')
-            raise Exception(f'Could not find the file {filename}')
+            print(f'Error when opening file {filename}')
+            raise Exception(f'File Could not be found! {filename}')
         super().__init__(request, text, '200 OK')
 
 class Error(Response):
     def __init__(self, request: Request, error_code: str):
         super().__init__(request, '404 Not Found')
-        self.response_content.append("404 Not Found".encode())
