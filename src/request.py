@@ -1,9 +1,8 @@
-from . import Request
 import cgi
 
-class POST:
+class PostBody:
     __slots__ = 'data'
-    
+
     def __init__(self, data):
         self.data = data
         
@@ -12,8 +11,14 @@ class POST:
         if type(value) == str:
             value = cgi.escape(value)
         return value
-            
-# Credits: Joetib (https://github.com/jeotib/joeweb)
+    
+    def set(self, key, value):
+        self.data['key'] == value
+    
+    def __iter__(self):
+        for key, value in self.data:
+            yield key, value
+        
 class Request:
     __slots__ = [
         "environ", 
@@ -53,10 +58,10 @@ class Request:
         self.server_protocol = environ.get('SEVER_PROTOCOL')
         self.server_software = environ.get('SERVER_SOFTWARE')
         self.start_response = start_response
-        self.post = POST({})
+        self.post = PostBody({})
         self.parse()
+       
 
-           
     def parse(self):
         if self.method != "POST":
             return
@@ -66,8 +71,8 @@ class Request:
             environ = environ,
             keep_blank_values= True
         )     
-        for i in field_storage.list:
-            if not i.filename:
-                self.post.data[i.name] = i.value
+        for item in field_storage.list:
+            if not item.filename:
+                self.post.data[item.name] = item.value
             else:
-                self.post.data[i.name] = i
+                self.post.data[item.name] = item
