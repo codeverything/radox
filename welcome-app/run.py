@@ -1,6 +1,7 @@
-from radox.app import App
-from radox.response import HttpResponse, RenderResponse
+from src.App import App
+from src.response import HttpResponse, Render
 from wsgiref.simple_server import make_server
+
 
 app = App()
 app.set_static('/static/', '.')
@@ -10,5 +11,5 @@ def print_received(request):
     return RenderResponse(request,'index.html',None)
 
 if __name__=='__main__':
-    server = make_server('127.0.0.1', 80, app)
+    server = make_server('127.0.0.1', 3301, app)
     server.serve_forever()
