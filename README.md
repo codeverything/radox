@@ -1,6 +1,8 @@
 # Radox
 
-A WSGI based Python Web Framework inspired from Flask
+A WSGI based Python Web Framework inspired from Flask to build awesome web apps.
+
+It provides a simple and lightweight interface for building web applications, with features like routing.
 
 # Installing
 ```
