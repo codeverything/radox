@@ -1,8 +1,20 @@
-# Radox
 
-A WSGI based Python Web Framework inspired from Flask to build awesome web apps.
+<p align="center">
+<img src="/logo/logo.png"></p>
 
-It provides a simple and lightweight interface for building web applications, with features like routing.
+<p align="center">
+  <img src="https://img.shields.io/github/license/codeverything/radox?color=FFBB00">
+
+  <img src="https://img.shields.io/github/issues/codeverything/radox?color=EA4335">
+  <img src="https://img.shields.io/pypi/v/radox.svg?color=4285F4">
+
+  <img src="https://sonarcloud.io/api/project_badges/measure?project=codeverything_radox&metric=alert_status">
+
+</p>
+
+Your next web framework for python web applications.
+
+Radox is a light weight WSGI based web framework for ypthon web applications. It provides a basic routing.
 
 # Installing
 ```
@@ -39,3 +51,12 @@ WARNING!! This is a Development server don't use it on production
 * Pypi        - https://pypi.org/project/radox/
 * Issues      - https://github.com/codeverything/radox/issues
 * Discord     - https://discord.gg/RnQHNAmx
+
+License
+-------
+
+
+
+Code and documentation are available according to the MIT License (see [LICENSE](https://github.com/codeverything/radox/blob/main/LICENSE)).
+
+
