@@ -14,7 +14,7 @@
 
 Your next web framework for python web applications.
 
-Radox is a light weight WSGI based web framework for ypthon web applications. It provides a basic routing.
+Radox is a light weight WSGI based web framework for python web applications. It provides a basic routing.
 
 # Installing
 ```
