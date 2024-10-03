@@ -50,7 +50,7 @@ WARNING!! This is a Development server don't use it on production
 * Source Code - https://github.com/codeverything/radox.git
 * Pypi        - https://pypi.org/project/radox/
 * Issues      - https://github.com/codeverything/radox/issues
-* Discord     - https://discord.gg/RnQHNAmx
+* Discord     - https://discord.gg/wDXSgZ5JRZ
 
 License
 -------
