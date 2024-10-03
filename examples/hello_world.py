@@ -1,9 +1,4 @@
-import sys
-import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-from src.main import *
+from src.main import Radox
 from wsgiref.simple_server import make_server
 
 app = Radox()
