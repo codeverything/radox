@@ -1,4 +1,6 @@
-__version__ = "0.0.1"
+from __future__ import annotations
 
-def version():
-	return __version__
+__version__ = "0.0.4"
+
+def version() -> str:
+    return __version__
