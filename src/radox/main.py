@@ -1,28 +1,50 @@
+from __future__ import annotations
+
 from wsgiref.simple_server import make_server
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import socketserver
 import re
+from typing import TYPE_CHECKING, TypeVar, Generic
+
+if TYPE_CHECKING:
+    from typing_extensions import ParamSpec
+    from collections.abc import Callable
+
+    P = ParamSpec("P")
+else:
+    P = Generic
+
+
+T = TypeVar("T")
+
+
 
 class radox:
-    def __init__(self):
-        self.routes = []
+    __slots__ = ("routes",)
+    def __init__(self) -> None:
+        self.routes: list[tuple[re.Pattern[str], Callable[..., str]]] = []
     
-    def route(self, path_pattern):
-        def decorator(handler):
+    def route(
+        self,
+        path_pattern: str,
+    ) -> Callable[[Callable[P, str]], Callable[P, str]]:
+        def decorator(handler: Callable[P, str]) -> Callable[P, str]:
             pattern = re.sub(r'<([^>]+)>', r'(?P<\1>[^/]+)', path_pattern)
             self.routes.append((re.compile(f'^{pattern}$'), handler))
-            def wrapper():
-                return handler()
-            return wrapper
+            return handler
         return decorator
     
-    def serve(self, port):
+    def serve(self, port: int) -> None:
         handler = self.make_handler()
         with socketserver.TCPServer(("", port), handler) as httpd:
             print(f"Serving on port {port}")
             httpd.serve_forever()
     
-    def __call__(self, environ, start_response):
+    def __call__(
+        self,
+        environ: dict[str, str],
+        start_response: Callable[[str, list[tuple[str, str]]], None]
+    ) -> list[bytes]:
         path = environ['PATH_INFO']
         
         for pattern, handler in self.routes:
@@ -41,15 +63,16 @@ class radox:
         return [b'404 Not Found']
     
     @staticmethod
-    def render_template(template_name):
+    def render_template(template_name: str) -> str:
         with open(template_name, "r") as f:
             return f.read()
     
-    def make_handler(self):
+    def make_handler(self) -> type[BaseHTTPRequestHandler]:
         app = self
         
         class RequestHandler(BaseHTTPRequestHandler):
-            def do_GET(self):
+            __slots__ = ()
+            def do_GET(self) -> None:
                 for pattern, handler in app.routes:
                     match = pattern.match(self.path)
                     if match:
@@ -74,3 +97,4 @@ class radox:
                 self.wfile.write(b"404 Not Found")
         
         return RequestHandler
+

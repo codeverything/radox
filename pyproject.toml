@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools >= 64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "radox"
+dynamic = ["version"]
+authors = [
+  { name="Palani", email="palanioffcl@gmail.com" },
+]
+description = "A WSGI based Python web framework inspired from flask"
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {file = "LICENSE"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Web Environment",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+    "Topic :: Internet :: WWW/HTTP",
+    "Typing :: Typed",
+]
+keywords = ['web', 'python', 'framework', 'libraries', 'webapps']
+dependencies = [
+    "wsgiref; python_version < '3.2'",
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "radox.__init__.__version__"}
+
+[project.urls]
+"Source" = "https://github.com/codeverything/radox"
+"Bug Tracker" = "https://github.com/codeverything/radox/issues"
+
+[tool.setuptools.package-data]
+radox = ["py.typed"]
+
+[tool.mypy]
+files = ["src/radox/",]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+no_implicit_optional = true
+no_implicit_reexport = true
+show_column_numbers = true
+show_error_codes = true
+show_traceback = true
+strict = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+addopts = "--cov-report=xml --cov-report=term-missing"
+testpaths = [
+    "tests",
+]

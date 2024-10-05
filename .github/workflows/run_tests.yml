@@ -7,14 +7,19 @@ jobs:
     strategy:
       max-parallel: 5
       matrix:
-        python-version: ['2.7', '3.6', '3.7', '3.8', '3.9', 'pypy-2.7', 'pypy-3.6', 'pypy-3.7']
+        python-version: ['3.8', '3.9', '3.10', 'pypy-3.10', '3.11', '3.12']
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
+        cache: pip
     - name: Install dependencies
-      run: .github/workflows/install-deps.sh
+      run: |
+        python -m pip install --upgrade pip mypy pytest pytest-cov
+        python -m pip install .
     - name: Run tests
-      run: pytest
+      run: |
+        pytest
+        mypy

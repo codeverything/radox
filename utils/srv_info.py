@@ -1,14 +1,22 @@
+from __future__ import annotations
+
 from signal import signal, SIGINT
 import simple_colors
 import sys
+from typing import TYPE_CHECKING
 
-def handler(sig, frame):
-   sys.exit(0)
+if TYPE_CHECKING:
+   from types import FrameType
 
-def info():
-   signal(SIGINT, handler)
-   print("Compiled Successfully   "+simple_colors.green("DONE"))
-   print("Your Project is ready and serving now")
-   print(simple_colors.red("WARNING!! This is a Development server don't use it on production"))
-   print(" -> Running server at http://127.0.0.1:3301")
-   print(" -> Press Ctrl+C to exit")
+
+def handler(sig: int, frame: FrameType | None) -> None:
+    sys.exit(0)
+
+
+def info() -> None:
+    signal(SIGINT, handler)
+    print("Compiled Successfully   "+simple_colors.green("DONE"))
+    print("Your Project is ready and serving now")
+    print(simple_colors.red("WARNING!! This is a Development server don't use it on production"))
+    print(" -> Running server at http://127.0.0.1:3301")
+    print(" -> Press Ctrl+C to exit")
