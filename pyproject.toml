@@ -11,7 +11,7 @@ authors = [
 description = "A WSGI based Python web framework inspired from flask"
 readme = {file = "README.md", content-type = "text/markdown"}
 license = {file = "LICENSE"}
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Web Environment",
@@ -31,7 +31,7 @@ classifiers = [
 ]
 keywords = ['web', 'python', 'framework', 'libraries', 'webapps']
 dependencies = [
-    "wsgiref",
+    "wsgiref; python_version < '3.2'",
 ]
 
 [tool.setuptools.dynamic]
@@ -45,7 +45,7 @@ version = {attr = "radox.__init__.__version__"}
 radox = ["py.typed"]
 
 [tool.mypy]
-files = ["src/",]
+files = ["src/radox/",]
 check_untyped_defs = true
 disallow_any_generics = true
 disallow_untyped_calls = true
@@ -63,3 +63,9 @@ warn_return_any = true
 warn_unreachable = true
 warn_unused_configs = true
 warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+addopts = "--cov-report=xml --cov-report=term-missing"
+testpaths = [
+    "tests",
+]
