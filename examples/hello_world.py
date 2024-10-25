@@ -7,6 +7,8 @@ from wsgiref.simple_server import make_server
 
 import simple_colors
 
+from radox.main import radox
+
 if TYPE_CHECKING:
     from types import FrameType
 
@@ -19,13 +21,12 @@ def info() -> None:
     signal(SIGINT, handler)
     print("Compiled Successfully   " + simple_colors.green("DONE"))
     print("Your Project is ready and serving now")
-    print(
-        simple_colors.red(
-            "WARNING!! This is a Development server don't use it on production"
-        )
-    )
+    print(simple_colors.red("WARNING!! This is a Development server don't use it on production"))
     print(" -> Running server at http://127.0.0.1:3301")
     print(" -> Press Ctrl+C to exit")
+
+
+app = radox()
 
 
 @app.route("/")
@@ -34,7 +35,7 @@ def index() -> str:
 
 
 @app.route("/home")
-def index(request: str) -> str:
+def home_page(request: str) -> str:
     return "Home Page"
 
 

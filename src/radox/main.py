@@ -93,9 +93,7 @@ class radox:
                             self.send_response(500)
                             self.send_header("Content-Type", "text/plain")
                             self.end_headers()
-                            self.wfile.write(
-                                f"500 Internal Server Error: {str(e)}".encode()
-                            )
+                            self.wfile.write(f"500 Internal Server Error: {str(e)}".encode())
                             return
 
                 self.send_response(404)
