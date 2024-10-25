@@ -64,6 +64,27 @@ warn_unreachable = true
 warn_unused_configs = true
 warn_unused_ignores = true
 
+[tool.ruff.lint.isort]
+combine-as-imports = true
+
+[tool.pycln]
+all = true
+disable_all_dunder_policy = true
+
+[tool.black]
+line-length = 79
+
+[tool.ruff]
+line-length = 79
+fix = true
+
+include = ["*.py", "*.pyi", "**/pyproject.toml"]
+
+[tool.ruff.lint]
+select = [
+    "I",     # isort
+]
+
 [tool.pytest.ini_options]
 addopts = "--cov-report=xml --cov-report=term-missing"
 testpaths = [
