@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from radox.main import radox
 import re
+
+from radox.main import radox
 
 
 def test_init() -> None:
@@ -16,4 +17,4 @@ def test_register_route() -> None:
     def handle_file(file: str) -> str:
         return f"Requested {file!r}"
 
-    assert app.routes[0] == (re.compile('^/(?P<file>[^/]+)$'), handle_file)
+    assert app.routes[0] == (re.compile("^/(?P<file>[^/]+)$"), handle_file)
