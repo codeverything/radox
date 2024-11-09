@@ -1,6 +1,6 @@
 
 <p align="center">
-<img src="/logo/logo.png"></p>
+<img src="https://raw.githubusercontent.com/codeverything/radox/main/logo/logo.png" style="height: 350px"></p>
 
 <p align="center">
   <img src="https://img.shields.io/github/license/codeverything/radox?color=FFBB00">
@@ -59,6 +59,7 @@ WARNING!! This is a Development server don't use it on production
 * Pypi        - https://pypi.org/project/radox/
 * Issues      - https://github.com/codeverything/radox/issues
 * Discord     - https://discord.gg/wDXSgZ5JRZ
+* Site        - https://codeverything.github.io/radox/
 
 License
 -------
